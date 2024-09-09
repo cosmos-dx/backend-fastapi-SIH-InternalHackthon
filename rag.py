@@ -11,7 +11,15 @@ from langchain.chains.question_answering import load_qa_chain
 # if not api_key:
 #     raise ValueError("OpenAI API key is not set in environment variables.")
 
-os.environ["OPENAI_API_KEY"] = ""
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("OpenAI API key is not set in environment variables.")
+
+# Set the key in your OpenAI embeddings instance
+os.environ["OPENAI_API_KEY"] = api_key
+
+# Now you can proceed with your code as usual
+embeddings = OpenAIEmbeddings()
 
 # Function to load and extract text from the PDF
 
